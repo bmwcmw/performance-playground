@@ -1,20 +1,22 @@
 package playground.conversion;
 
-import com.fasterxml.jackson.module.afterburner.AfterburnerModule;
-import org.junit.FixMethodOrder;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.JUnit4;
-import org.junit.runners.MethodSorters;
-import playground.BasicBenchmark;
-import playground.BenchmarkRunner;
+import static org.junit.Assert.assertEquals;
 
 import java.io.ByteArrayOutputStream;
 import java.text.DecimalFormat;
 import java.util.zip.GZIPOutputStream;
 
-import static org.junit.Assert.assertEquals;
-import static playground.conversion.TestObjectProtos.TestObjectProto;
+import org.junit.FixMethodOrder;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
+import org.junit.runners.MethodSorters;
+
+import com.fasterxml.jackson.module.afterburner.AfterburnerModule;
+
+import playground.BasicBenchmark;
+import playground.BenchmarkRunner;
+import playground.conversion.TestObjectProtos.TestObjectProto;
 
 /**
  * Benchmarks data conversion frameworks.
@@ -24,9 +26,9 @@ import static playground.conversion.TestObjectProtos.TestObjectProto;
 @RunWith(JUnit4.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class DataConversionBenchmarkTest {
-    private static final String JACKSON_TOOL = "Jackson JSON 2.6.0-rc2";
-    private static final String AFTERBURNER_TOOL = "Jackson Afterburner JSON 2.6.0-rc2";
-    private static final String PROTOBUF_TOOL = "Protocol Buffers 3.0.0-alpha-3";
+    private static final String JACKSON_TOOL = "Jackson JSON 2.6.1";
+    private static final String AFTERBURNER_TOOL = "Jackson Afterburner JSON 2.6.1";
+    private static final String PROTOBUF_TOOL = "Protocol Buffers 3.0.0-beta-1";
 
     private static final DecimalFormat FORMATTER = new DecimalFormat("#,###");
 
@@ -252,15 +254,15 @@ public class DataConversionBenchmarkTest {
 
 
     private byte[] gzipCompress(byte[] bytes) throws Exception {
-        ByteArrayOutputStream byteStream = new ByteArrayOutputStream(bytes.length);
-        GZIPOutputStream zipStream = new GZIPOutputStream(byteStream);
-        zipStream.write(bytes);
-        zipStream.close();
-        byteStream.close();
-        return byteStream.toByteArray();
+    	try(ByteArrayOutputStream byteStream = new ByteArrayOutputStream(bytes.length);
+    	        GZIPOutputStream zipStream = new GZIPOutputStream(byteStream);) {
+            zipStream.write(bytes);
+            return byteStream.toByteArray();
+    	}
     }
 
-    private void printCompressionResults(String tool, byte[] bytes, byte[] compressedBytes) {
+    @SuppressWarnings("boxing")
+	private void printCompressionResults(String tool, byte[] bytes, byte[] compressedBytes) {
         // | Jackson JSON 2.5.1 | 28,082 | 9,736 | 2.88 |
         System.out.println(String.format("| %s | %s | %s | %.2f |",
                 tool,

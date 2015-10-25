@@ -40,7 +40,8 @@ public class BenchmarkRunner {
         printBenchmarkResult(benchmark, min, max, average);
     }
 
-    private void printBenchmarkResult(Benchmark benchmark, long min, long max, long average) {
+    @SuppressWarnings("boxing")
+	private void printBenchmarkResult(Benchmark benchmark, long min, long max, long average) {
         // | Jackson JSON 2.5.1 | 1,559 | 1,358 | 2,330 | -0.13% / +0.49% |
         System.out.println(String.format("| %s | %s | %s | %s | -%.2f%% / +%.2f%% |",
                 benchmark.describe(),
