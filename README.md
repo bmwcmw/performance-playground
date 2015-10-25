@@ -27,7 +27,35 @@ was performed 100 times in order to calculate average, minimum, and maximum
 times as well as variance around the average to gauge how consistent the
 serialization and deserialization processes are for the various frameworks.
 
-The latest benchmarks were collected on October 21/23, 2015 using Java 1.8.0_60 and the following platform:
+--- October 25, 2015 using Java 1.8.0_60 and the following platform:
+
+* CPU: i7 4790k 4.0-4.4 GHz, 4 cores 8T
+* RAM: 16 GB 2400 MHz DDR3
+* Disk: SSD
+* OS: Windows 10
+
+Protobuf 2.6.1 :
+
+| Framework | Average Time (ms) | Min. Time (ms) | Max. Time (ms) | Variance |
+| :-------- | ----------------: | -------------: | -------------: | :------- |
+| Jackson JSON 2.6.1 | 101 | 97 | 135 | -0,04% / +0,34% |
+| Jackson Afterburner JSON 2.6.1 | 101 | 101 | 109 | -0,00% / +0,08% |
+| Protocol Buffers 3.0.0-beta-1 | 34 | 33 | 85 | -0,03% / +1,50% |
+
+| Framework | Average Time (ms) | Min. Time (ms) | Max. Time (ms) | Variance |
+| :-------- | ----------------: | -------------: | -------------: | :------- |
+| Jackson JSON 2.6.1 | 199 | 196 | 269 | -0,02% / +0,35% |
+| Jackson Afterburner JSON 2.6.1 | 195 | 192 | 218 | -0,02% / +0,12% |
+| Protocol Buffers 3.0.0-beta-1 | 30 | 30 | 65 | -0,00% / +1,17% |
+
+| Framework | Uncompressed Size (bytes) | GZip Compressed Size (bytes) | Compression Ratio |
+| :-------- | ------------------------: | ---------------------------: | ----------------: |
+| Jackson JSON 2.6.1 | 33 321 | 10 | 3332,10 |
+| Jackson Afterburner JSON 2.6.1 | 33 338 | 10 | 3333,80 |
+| Protocol Buffers 3.0.0-beta-1 | 11 998 | 10 | 1199,80 |
+
+
+--- October 21/23, 2015 using Java 1.8.0_60 and the following platform:
 
 * CPU: i5 4570 3.2-3.6 GHz, 4 cores
 * RAM: 8 GB DDR3
@@ -87,7 +115,7 @@ Protobuf 3.0.0-beta-1 :
 | Protocol Buffers 3.0.0-beta-1 | 12 001 | 10 | 1200,10 |
 
 
-The pre-latest benchmarks were collected on June 25, 2015 using Java 1.8.0_40 and the following platform:
+--- June 25, 2015 using Java 1.8.0_40 and the following platform:
 
 * CPU: 2.8 GHz Intel Core i7, 4 cores
 * RAM: 16 GB 1600 MHz DDR3
