@@ -1,11 +1,12 @@
 package playground.conversion;
 
-import com.google.common.base.Joiner;
-import com.google.common.base.Objects;
-import com.google.common.collect.ImmutableSet;
+import java.util.Arrays;
+
 import org.joda.time.Instant;
 
-import java.util.Arrays;
+import com.google.common.base.Joiner;
+import com.google.common.base.MoreObjects;
+import com.google.common.collect.ImmutableSet;
 
 /**
  * Stores a lot of different data types in various structures to make sure a broad spectrum of capabilities for each
@@ -159,7 +160,7 @@ public class TestObject {
 
     @Override
     public String toString() {
-        return Objects.toStringHelper(this)
+        return MoreObjects.toStringHelper(this)
                 .add("myBoolean", myBoolean)
                 .add("myInt", myInt)
                 .add("myDouble", myDouble)
@@ -326,7 +327,7 @@ public class TestObject {
 
         @Override
         public String toString() {
-            return Objects.toStringHelper(this)
+            return MoreObjects.toStringHelper(this)
                     .add("instant0", instant0.getMillis())
                     .add("instant1", instant1.getMillis())
                     .add("instant2", instant2.getMillis())

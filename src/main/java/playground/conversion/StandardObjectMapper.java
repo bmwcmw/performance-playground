@@ -11,7 +11,9 @@ import com.fasterxml.jackson.datatype.joda.JodaModule;
  * @author egillespie
  */
 public class StandardObjectMapper extends ObjectMapper {
-    public StandardObjectMapper() {
+	private static final long serialVersionUID = 15347813914730741L;
+
+	public StandardObjectMapper() {
         registerModule(new GuavaModule());
         registerModule(new JodaModule());
     }
