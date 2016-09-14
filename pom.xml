@@ -99,6 +99,12 @@
 		    <artifactId>flatbuffers</artifactId>
 		    <version>1.2.0-3f79e055</version>
 		</dependency>
+		
+		<dependency>
+		    <groupId>org.capnproto</groupId>
+		    <artifactId>runtime</artifactId>
+		    <version>0.1.1</version>
+		</dependency>
 
         <dependency>
             <groupId>com.google.guava</groupId>
